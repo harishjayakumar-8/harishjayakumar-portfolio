@@ -28,7 +28,7 @@ A responsive e-commerce website developed for automobile accessories with a focu
 [View on GitHub](https://github.com/harishjayakumar-8/DBZ-Automobile-Accessories)
 
 🌐 **Live Website:**  
-[Visit Live Site](https://harishjayakumar-8.github.io/DBZ-Automobile-Accessories/product.html)
+[Visit Live Site](https://harishjayakumar-8.github.io/DBZ-Automobile-Accessories/index.html)
 
 ---
 
