@@ -2,90 +2,104 @@
 
 Welcome to my personal portfolio repository.
 
-I am an MCA student with a strong interest in Software Development and Software Testing.  
-This portfolio highlights my projects, technical skills, education, and certifications.
+I am currently pursuing a Master of Computer Applications (MCA) and have a strong interest in **Software Development** and **Software Testing**.
+This portfolio showcases my projects, technical skills, education, and certifications.
 
 ---
 
-## 🛠 Technologies Used
+## 🚀 Technologies Used
 
-- HTML5  
-- Tailwind CSS  
-- JavaScript  
-- Lucide Icons  
+* HTML5
+* Tailwind CSS
+* JavaScript
+* Lucide Icons
 
 ---
 
 ## 💼 Projects
 
-### 1️⃣ DBZ Accessories – E-commerce Website
+### 🔹 DBZ Accessories – E-commerce Website
 
-A responsive e-commerce website developed for automobile accessories with a focus on clean UI and smooth user experience.
+A responsive e-commerce platform for automobile accessories, designed with a focus on clean UI, usability, and smooth user experience.
 
-**Tech Stack:** HTML, CSS, JavaScript  
+**Tech Stack:** HTML, CSS, JavaScript
 
-🔗 **GitHub Repository:**  
-[View on GitHub](https://github.com/harishjayakumar-8/DBZ-Automobile-Accessories)
+🔗 **GitHub Repository:**
+https://github.com/harishjayakumar-8/DBZ-Automobile-Accessories
 
-🌐 **Live Website:**  
-[Visit Live Site](https://harishjayakumar-8.github.io/DBZ-Automobile-Accessories/product.html)
+🌐 **Live Website:**
+https://harishjayakumar-8.github.io/DBZ-Automobile-Accessories/index.html
 
 ---
 
-### 2️⃣ Personal Portfolio Website
+### 🔹 Personal Portfolio Website
 
-A fully responsive portfolio website designed to showcase my profile, skills, projects, and certifications.
+A fully responsive portfolio website built to showcase my profile, skills, projects, and certifications in a structured and professional manner.
 
-**Tech Stack:** HTML, Tailwind CSS, JavaScript  
+**Tech Stack:** HTML, Tailwind CSS, JavaScript
 
-🔗 **GitHub Repository:**  
-[View on GitHub](https://github.com/harishjayakumar-8/harishjayakumar-8.github.io)
+🔗 **GitHub Repository:**
+https://github.com/harishjayakumar-8/harishjayakumar-8.github.io
 
-🌐 **Live Website:**  
-[Visit Live Site](https://harishjayakumar-8.github.io/harishjayakumar-portfolio/)
+🌐 **Live Website:**
+https://harishjayakumar-8.github.io/harishjayakumar-portfolio/
 
 ---
 
 ## 🎓 Education
 
-**Master of Computer Applications (MCA)**  
-Dr. MGR Educational and Research Institute (2024 – Present)
+**Master of Computer Applications (MCA)**
+Dr. MGR Educational and Research Institute, Chennai
+*2024 – Present*
 
-**BCA – Digital Technology**  
-Dr. MGR Educational and Research Institute (2021 – 2024)
+**Bachelor of Computer Applications (BCA) – Digital Technology**
+Dr. MGR Educational and Research Institute, Chennai
+*2021 – 2024*
 
 ---
 
 ## 📜 Certifications & Training
 
-- **Java Enterprise Apps** – NIIT (2021 – 2024 | 3 Years)  
-- **Frontend Development Internship** – Unified Mentor (2025 | 1 Year)  
-- **Java Training Internship** – Besant Technologies (2025 | 1 Year)  
-- **Cloud Computing** – NPTEL (2025 | 1 Year)  
-- **Software Automation Testing (Selenium)** – QSpiders (2025 – Present | Ongoing)
+* **Java Enterprise Applications** – NIIT
+  *2021 – 2024 (3 Years)*
+
+* **Frontend Development Internship** – Unified Mentor
+  *2025 (1 Year)*
+
+* **Java Training Internship** – Besant Technologies
+  *2025 (1 Year)*
+
+* **Cloud Computing** – NPTEL
+  *2025 (1 Year)*
+
+* **Software Automation Testing (Selenium)** – QSpiders
+  *2025 – Present (Ongoing)*
 
 ---
 
-## 🛠 Skills
+## 🧠 Skills
 
-**Programming Languages:**  
-HTML, CSS, JavaScript, Python, Java, C++, Data Structures & Algorithms  
+### 💻 Programming & Technologies
 
-**Tools & Platforms:**  
-VS Code, Eclipse IDE, GitHub, LinkedIn, MS Office  
+HTML, CSS, JavaScript, Python, Java, C++, Data Structures & Algorithms
 
-**Soft Skills:**  
-Communication, Problem-Solving, Critical Thinking, Teamwork, Adaptability  
+### 🛠 Tools & Platforms
+
+VS Code, Eclipse IDE, GitHub, LinkedIn, MS Office
+
+### 🤝 Soft Skills
+
+Communication, Problem-Solving, Critical Thinking, Teamwork, Adaptability
 
 ---
 
 ## 📬 Contact
 
-📧 Email: harishhari0408@gmail.com  
-📱 Phone: +91 9486495181  
-🔗 LinkedIn: [Connect with me](https://linkedin.com/in/harishjayakumar8)  
-💻 GitHub: [harishjayakumar-8](https://github.com/harishjayakumar-8)
+📧 **Email:** [harishhari0408@gmail.com](mailto:harishhari0408@gmail.com)
+📱 **Phone:** +91 9486495181
+🔗 **LinkedIn:** https://linkedin.com/in/harishjayakumar8
+💻 **GitHub:** https://github.com/harishjayakumar-8
 
 ---
 
-⭐ If you found this repository helpful, feel free to star it.
+⭐ If you found this portfolio useful, feel free to give it a star.

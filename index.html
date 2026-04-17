@@ -1,553 +1,932 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harish J's Portfolio</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        /* Custom Tailwind Configuration (to use our specific colors) */
-        :root {
-            --color-primary: #86A8E7; /* Soft Blue */
-            --color-secondary: #F5F5DC; /* Beige */
-            --color-dark: #2F4F4F; /* Dark Slate Gray for text/accents */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harish J — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+/* --- Base Styles & Variables --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        .bg-primary { background-color: var(--color-primary); }
-        .text-primary { color: var(--color-primary); }
-        .bg-secondary { background-color: var(--color-secondary); }
-        .text-dark { color: var(--color-dark); }
-        .border-primary { border-color: var(--color-primary); }
+:root {
+  --blue: #5B8DEF;
+  --blue-lt: #EAF0FD;
+  --dark: #1A2332;
+  --mid: #4A5568;
+  --light: #F8F9FB;
+  --white: #FFFFFF;
+  --border: #E2E8F0;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(91, 141, 239, .12);
+}
 
-        /* Custom scrollbar for better aesthetics */
-        body::-webkit-scrollbar {
-            width: 8px;
-        }
-        body::-webkit-scrollbar-thumb {
-            background-color: var(--color-primary);
-            border-radius: 4px;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #f7f7f0; /* Very light, subtle off-white */
-        }
-        
-        .section-heading {
-            position: relative;
-            display: inline-block;
-        }
-        .section-heading::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 70%;
-            height: 3px;
-            background-color: var(--color-primary);
-            border-radius: 9999px;
-        }
-    </style>
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  line-height: 1.7;
+}
+
+/* --- Navigation --- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(248, 249, 251, .92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 clamp(1rem, 5vw, 3rem);
+}
+
+.nav-inner {
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+}
+
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.5rem;
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: .15rem;
+  list-style: none;
+}
+
+.nav-links a {
+  display: block;
+  padding: .42rem 1rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--mid);
+  text-decoration: none;
+  border-radius: 99px;
+  position: relative;
+  transition: background .25s ease, color .25s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--blue);
+  border-radius: 99px;
+  transition: width .28s ease, left .28s ease;
+}
+
+.nav-links a:hover { background: var(--blue-lt); color: var(--blue); }
+.nav-links a:hover::after { width: 55%; left: 22.5%; }
+
+.nav-links a.active {
+  background: var(--blue-lt);
+  color: var(--blue);
+  font-weight: 600;
+}
+.nav-links a.active::after { width: 55%; left: 22.5%; }
+
+#ham {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .4rem;
+}
+
+#ham span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: .3s;
+}
+
+#ham span + span { margin-top: 5px; }
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: .4rem;
+  padding: 1rem clamp(1rem, 5vw, 3rem) 1.2rem;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+}
+
+.mobile-menu.open { display: flex; }
+
+.mobile-menu a {
+  padding: .65rem 1rem;
+  background: var(--blue-lt);
+  color: var(--blue);
+  font-weight: 500;
+  border-radius: var(--radius);
+  text-decoration: none;
+  text-align: center;
+  transition: background .2s;
+}
+
+.mobile-menu a:hover { background: var(--blue); color: #fff; }
+
+/* --- Global Components --- */
+main {
+  max-width: 1400px;
+  margin: auto;
+  padding: 0 clamp(1rem, 5vw, 3rem);
+}
+
+section { padding: 40px 0; }
+section + section { border-top: 1px solid var(--border); }
+
+.section-label {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: .6rem;
+  display: block;
+}
+
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.35rem;
+  color: var(--dark);
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: box-shadow .25s, transform .25s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 36px rgba(91, 141, 239, .18);
+  transform: translateY(-3px);
+}
+
+/* --- Hero Section --- */
+#home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.hero-text { flex: 1 1 320px; }
+.hero-text .eyebrow {
+  font-size: .88rem;
+  font-weight: 500;
+  color: var(--blue);
+  letter-spacing: .06em;
+  margin-bottom: .6rem;
+}
+
+.hero-text h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  line-height: 1.05;
+  margin-bottom: .8rem;
+}
+
+.hero-text .role {
+  font-size: 1.1rem;
+  color: var(--mid);
+  margin-bottom: 1.2rem;
+}
+
+.hero-text .bio {
+  font-size: .97rem;
+  color: var(--mid);
+  max-width: 480px;
+  margin-bottom: 2rem;
+}
+
+.btn-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .7rem 1.4rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: .9rem;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(91, 141, 239, .35);
+}
+
+.btn-outline {
+  background: var(--white);
+  color: var(--dark);
+  border: 1.5px solid var(--border);
+}
+
+.hero-avatar {
+  flex: 0 0 260px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(91, 141, 239, .2);
+  border: 6px solid var(--white);
+}
+
+.hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Profile --- */
+.bio-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+  font-size: .97rem;
+  color: var(--mid);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  padding: 1.2rem;
+  text-align: center;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--dark);
+  transition: .2s;
+}
+
+.contact-item:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: var(--blue-lt);
+}
+
+.contact-item i { font-size: 1.4rem; color: var(--blue); }
+.contact-item span { font-size: .82rem; font-weight: 500; word-break: break-all; }
+
+/* --- Projects --- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: .25s;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  box-shadow: 0 8px 36px rgba(91, 141, 239, .18);
+  transform: translateY(-3px);
+}
+
+.project-card-body {
+  padding: 1.5rem 1.5rem 0.5rem;
+  flex: 1;
+}
+
+.project-card-body h3 { color: var(--blue); margin-bottom: .5rem; }
+.project-card-body p { font-size: .92rem; color: var(--mid); margin-bottom: 0.5rem; }
+
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 0.5rem; }
+.tag {
+  font-size: .75rem;
+  font-weight: 600;
+  padding: .25rem .65rem;
+  background: var(--blue-lt);
+  color: var(--blue);
+  border-radius: 99px;
+}
+
+.project-details {
+  font-size: .87rem;
+  color: var(--mid);
+  padding: 0 1.5rem 1rem;
+  list-style-position: inside;
+}
+
+.project-details li { margin-bottom: .2rem; }
+
+.project-actions {
+  display: flex;
+  gap: .6rem;
+  padding: 1rem 1.5rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-actions a {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  padding: .55rem .8rem;
+  border-radius: 8px;
+  font-size: .83rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: .2s;
+}
+
+.project-actions .a-primary { background: var(--blue); color: #fff; }
+.project-actions .a-primary:hover { background: #4a7de0; }
+.project-actions .a-outline { border: 1.5px solid var(--border); color: var(--dark); }
+.project-actions .a-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+/* --- Enhanced Education Design --- */
+.edu-track {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.edu-card-custom {
+  display: flex;
+  gap: 2rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  transition: 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.edu-card-custom:hover {
+  transform: translateX(10px);
+  border-color: var(--blue);
+}
+
+.edu-date-badge {
+  flex: 0 0 120px;
+  height: fit-content;
+  background: var(--blue);
+  color: white;
+  padding: 0.8rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 10px rgba(91, 141, 239, 0.3);
+}
+
+.edu-content-main h3 { font-size: 1.25rem; margin-bottom: 0.4rem; color: var(--dark); }
+.edu-uni { color: var(--blue); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; display: block; }
+.edu-cgpa {
+  display: inline-block;
+  font-size: 0.85rem;
+  background: var(--blue-lt);
+  color: var(--blue);
+  padding: 0.2rem 0.8rem;
+  border-radius: 99px;
+  font-weight: 600;
+}
+
+/* --- Skills --- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: .25s;
+}
+
+.skill-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+}
+
+.skill-card-title {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 1rem;
+}
+
+.skill-card-title i { color: var(--blue); }
+
+.pill-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+.pill {
+  font-size: .82rem;
+  font-weight: 500;
+  padding: .35rem .85rem;
+  background: var(--blue-lt);
+  color: var(--blue);
+  border-radius: 99px;
+  border: 1px solid rgba(91, 141, 239, .2);
+}
+
+/* --- Certifications --- */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.cert-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+  transition: .25s;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.cert-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+}
+
+.cert-card .cert-icon { color: var(--blue); font-size: 1.3rem; margin-bottom: .4rem; }
+.cert-card h3 { font-size: 1rem; font-weight: 600; color: var(--dark); }
+.cert-card h3 a { color: inherit; text-decoration: none; }
+.cert-card h3 a:hover { color: var(--blue); }
+.cert-card .cert-sub { font-size: .82rem; color: var(--mid); }
+
+.cert-badge {
+  display: inline-block;
+  margin-top: .5rem;
+  font-size: .75rem;
+  font-weight: 600;
+  padding: .22rem .7rem;
+  background: var(--blue-lt);
+  color: var(--blue);
+  border-radius: 99px;
+  width: fit-content;
+}
+
+/* --- Languages with Animation --- */
+.lang-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.lang-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .55rem 1.1rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  font-weight: 500;
+  font-size: .9rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  transition: .25s; /* Same transition as cards */
+}
+
+.lang-chip:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px); /* Same animation as certifications */
+  box-shadow: var(--shadow);
+}
+
+.lang-chip i { color: var(--blue); font-size: .9rem; }
+
+/* --- Contact & Footer --- */
+#contact { text-align: center; }
+#contact .sub { color: var(--mid); max-width: 520px; margin: 0 auto 2rem; }
+
+.social-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  color: var(--mid);
+  font-size: 1.1rem;
+  transition: .2s;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: var(--blue-lt);
+}
+
+footer {
+  background: var(--dark);
+  color: rgba(255, 255, 255, .55);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: .85rem;
+}
+
+@media (max-width: 720px) {
+  #home { flex-direction: column-reverse; text-align: center; }
+  .hero-avatar { width: 180px; height: 180px; }
+  .nav-links { display: none; }
+  #ham { display: flex; flex-direction: column; }
+  .certs-grid { grid-template-columns: 1fr; }
+  .edu-card-custom { flex-direction: column; gap: 1rem; }
+  .edu-date-badge { flex: 0 0 auto; width: 100%; }
+}
+</style>
 </head>
-<body class="text-dark">
+<body>
 
-    <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50 shadow-md bg-secondary/95 backdrop-blur-sm">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4  flex justify-between items-center">
-            <a href="#home" class="text-4xl font-extrabold text-primary rounded-lg p-2 transition duration-300 hover:bg-primary/10">Harish J</a>
-            <div class="space-x-4 hidden md:flex">
-                <a href="#home" class="nav-link text-dark hover:text-primary transition duration-200 font-medium bg-primary text-white px-3 py-1 rounded-full shadow-md hover:shadow-lg"">Home</a>
-                <a href="#profile" class="nav-link text-dark hover:text-primary transition duration-200 font-medium bg-primary text-white px-3 py-1 rounded-full shadow-md hover:shadow-lg"">Profile</a>
-                <a href="#projects" class="nav-link text-dark hover:text-primary transition duration-200 font-medium bg-primary text-white px-3 py-1 rounded-full shadow-md hover:shadow-lg"">Projects</a>
-                <a href="#education" class="nav-link text-dark hover:text-primary transition duration-200 font-medium bg-primary text-white px-3 py-1 rounded-full shadow-md hover:shadow-lg"">Education</a>
-                <a href="#skills" class="nav-link text-dark hover:text-primary transition duration-200 font-medium bg-primary text-white px-3 py-1 rounded-full shadow-md hover:shadow-lg"">Skills</a>
-                <a href="#certificates" class="nav-link text-dark hover:text-primary transition duration-200 font-medium bg-primary text-white px-3 py-1 rounded-full shadow-md hover:shadow-lg"">Certifications</a>
-                <a href="#contact" class="nav-link text-dark hover:text-primary transition duration-200 font-medium bg-primary text-white px-3 py-1 rounded-full shadow-md hover:shadow-lg">Contact</a>
-            </div>
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-primary/10 transition duration-200">
-                <i data-lucide="menu" class="text-dark"></i>
-            </button>
-        </nav>
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">Harish J</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#profile">Profile</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certificates">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="ham" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#home">Home</a>
+    <a href="#profile">Profile</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#certificates">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
 
-        <!-- Mobile Menu Drawer -->
-        <div id="mobile-menu" class="hidden md:hidden bg-secondary/95 backdrop-blur-sm p-4 space-y-2 border-t border-primary/20">
-            <a href="#home" class="mobile-nav-link block text-white bg-primary font-medium p-2 rounded-lg text-center transition duration-200 mt-2">Home</a>
-            <a href="#profile" class="mobile-nav-link block text-white bg-primary font-medium p-2 rounded-lg text-center transition duration-200 mt-2">Profile</a>
-            <a href="#projects" class="mobile-nav-link block text-white bg-primary font-medium p-2 rounded-lg text-center transition duration-200 mt-2">Projects</a>
-            <a href="#education" class="mobile-nav-link block text-white bg-primary font-medium p-2 rounded-lg text-center transition duration-200 mt-2">Education</a>
-            <a href="#skills" class="mobile-nav-link block text-white bg-primary font-medium p-2 rounded-lg text-center transition duration-200 mt-2">Skills</a>
-            <a href="#certificates" class="mobile-nav-link block text-white bg-primary font-medium p-2 rounded-lg text-center transition duration-200 mt-2">Certifications</a>
-            <a href="#contact" class="mobile-nav-link block text-white bg-primary font-medium p-2 rounded-lg text-center transition duration-200 mt-2">Contact</a>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
-
-        <!-- 1. Hero / Home Section -->
-        <section id="home" class="pt-8 pb-12 sm:pt-16 sm:pb-24 flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-3/5 space-y-6 text-center md:text-left">
-                <p class="text-lg text-primary font-semibold">Hey there, I'm</p>
-                <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight">
-                    <span class="block">Harish J</span>
-                </h1>
-                <h2 class="text-2xl sm:text-3xl font-light text-dark/80">
-                   <span class="text-primary font-medium">Software Developer & Tester</span>
-                </h2>
-                <p class="text-lg text-dark/70 max-w-xl">
-                    Motivated MCA fresher with strong fundamentals in programming and problem-solving. Seeking an entry level role in software development or testing to apply technical skills and grow within the IT industry.
-                </p>
-                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-4 justify-center md:justify-start">
-                    <a href="#projects" class="w-full sm:w-auto px-6 py-3 bg-primary text-white text-center font-semibold rounded-xl shadow-lg hover:bg-primary/90 transition duration-300 transform hover:scale-[1.02]"><i data-lucide="folder-open" class="inline-block w-5 h-5 mr-2"></i>View Projects</a>
-                    <a href="harish_j_resume.pdf" target="_blank" rel="noopener" class="w-full sm:w-auto px-6 py-3 border bg-primary text-white border-dark/30 text-dark text-center font-semibold rounded-xl hover:bg-secondary transition duration-300 transform hover:scale-[1.02]">
-                          <i data-lucide="file-down" class="inline-block w-5 h-5 mr-2"></i>
-                        View Resume
-                    </a>
-
-                </div>
-            </div>
-            <div class="hidden md:block md:w-2/5 mt-10 md:mt-0 relative">
-    <div class="aspect-square w-full max-w-xs lg:max-w-md mx-auto rounded-full overflow-hidden shadow-2xl">
-        <img 
-             src="profile pic.jpeg" alt="" class="w-full h-full object-cover"/>
-            
+<main>
+  <section id="home">
+    <div class="hero-text">
+      <p class="eyebrow">Hey there, I'm</p>
+      <h1>Harish J</h1>
+      <p class="role">Software Developer &amp; Test Engineer</p>
+      <p class="bio">MCA graduate with a strong base in programming, passionate about software testing and development. Seeking an entry-level role to apply technical skills and grow as a versatile IT professional.</p>
+      <div class="btn-row">
+        <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-folder-open"></i> View Projects</a>
+        <a href="Harish_J_Resume.pdf" target="_blank" rel="noopener" class="btn btn-outline"><i class="fa-solid fa-file-arrow-down"></i> View Resume</a>
+      </div>
     </div>
-</div>
-            </div>
-        </section>
+    <div class="hero-avatar">
+      <img src="profile pic.jpeg" alt="Harish J" />
+    </div>
+  </section>
 
-       <section id="profile" class="py-10">
-            <h3 class="text-3xl font-bold mb-8 mt-20 section-heading">Profile Summary</h3>
-            <div class="bg-white p-8 rounded-2xl shadow-xl border border-primary/20">
-                <p class="text-lg leading-relaxed text-dark">
-                    A motivated MCA graduate with a strong foundation in programming, data structures, and problem solving.Seeking an entry-level role in software development or testing to apply knowledge, enhance abilities, and develop professionally within the IT industry. Gained practical experience in software development and testing through academic projects and internships. Eager to contribute technical skills in a collaborative environment while continuing to learn and grow.
-                </p>
-                <div class="mt-6 grid grid-cols-1 sm:grid-cols-4  gap-4 text-center">
-                    <div class="p-4 bg-white rounded-xl shadow-md">
-    <i data-lucide="mail" class="w-6 h-6 text-primary mx-auto mb-2"></i>
-    <a href="mailto:harishhari0408@gmail.com" class="font-semibold text-sm">
-        harishhari0408@gmail.com
+  <section id="profile">
+    <p class="section-label">About</p>
+    <h2>Profile Summary</h2>
+    <div class="bio-card">
+      Motivated MCA graduate with a strong foundation in programming, data structures, and problem-solving.
+      Seeking an entry-level role in software development or testing to apply technical knowledge, enhance skills,
+      and grow professionally within the IT industry. Gained practical experience through academic projects and
+      internships, with a keen interest in delivering quality-driven solutions in a collaborative environment.
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:harishhari0408@gmail.com" class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <span>harishhari0408@gmail.com</span>
+      </a>
+      <a href="tel:+919486495181" class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <span>+91 94864 95181</span>
+      </a>
+      <a href="https://linkedin.com/in/harishjayakumar8" target="_blank" class="contact-item">
+        <i class="fa-brands fa-linkedin"></i>
+        <span>LinkedIn</span>
+      </a>
+      <a href="https://github.com/harishjayakumar-8" target="_blank" class="contact-item">
+        <i class="fa-brands fa-github"></i>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="section-label">Work</p>
+    <h2>My Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-card-body">
+          <h3>DBZ Accessories</h3>
+          <p>Responsive e-commerce platform for automobile accessories.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+        <ul class="project-details">
+          <li>Developed an e-commerce website for automobile accessories as a final project submission.</li>
+          <li>Built the front-end using HTML, CSS, and JavaScript, focusing on responsive design and user experience.</li>
+          <li>Collaborated with a team and contributed specifically to front-end development under the guidance of a mentor.</li>
+        </ul>
+        <div class="project-actions">
+          <a href="https://harishjayakumar-8.github.io/DBZ-Automobile-Accessories/index.html" target="_blank" class="a-primary">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+          </a>
+          <a href="https://github.com/harishjayakumar-8/DBZ-Automobile-Accessories" target="_blank" class="a-outline">
+            <i class="fa-brands fa-github"></i> Code
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-body">
+          <h3>Personal Portfolio</h3>
+          <p>A dedicated platform to showcase skills, projects, and achievements.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+        <ul class="project-details">
+          <li>Developed a personal portfolio website to showcase my skills, projects, and achievements.</li>
+          <li>Designed and built the front-end using HTML, CSS, and JavaScript, making sure it's responsive and looks good on all devices.</li>
+          <li>Added interactive elements and smooth navigation to give a better user experience and make the site easy to use.</li>
+        </ul>
+        <div class="project-actions">
+          <a href="https://harishjayakumar-8.github.io/harishjayakumar-portfolio/" target="_blank" class="a-primary">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+          </a>
+          <a href="https://github.com/harishjayakumar-8/harishjayakumar-portfolio" target="_blank" class="a-outline">
+            <i class="fa-brands fa-github"></i> Code
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <p class="section-label">Academic</p>
+    <h2>Education</h2>
+    <div class="edu-track">
+      <div class="edu-card-custom">
+        <div class="edu-date-badge">2024 – 2026</div>
+        <div class="edu-content-main">
+          <span class="edu-uni">Dr. MGR Educational and Research Institute · Chennai</span>
+          <h3>Master of Computer Applications (MCA)</h3>
+          <div class="edu-cgpa">CGPA: 7.8 (Upto 2nd Sem)</div>
+        </div>
+      </div>
+
+      <div class="edu-card-custom">
+        <div class="edu-date-badge">2021 – 2024</div>
+        <div class="edu-content-main">
+          <span class="edu-uni">Dr. MGR Educational and Research Institute · Chennai</span>
+          <h3>BCA — Digital Technology</h3>
+          <div class="edu-cgpa">CGPA: 7.0 (Degree Awarded)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="section-label">Expertise</p>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <p class="skill-card-title"><i class="fa-solid fa-microchip"></i> Technical</p>
+        <div class="pill-list">
+          <span class="pill">SQL</span>
+          <span class="pill">Java</span>
+          <span class="pill">Manual Testing</span>
+          <span class="pill">HTML</span>
+          <span class="pill">CSS</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">DSA</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-card-title"><i class="fa-solid fa-people-group"></i> Soft Skills</p>
+        <div class="pill-list">
+          <span class="pill">Communication</span>
+          <span class="pill">Problem-solving</span>
+          <span class="pill">Teamwork</span>
+          <span class="pill">Critical Thinking</span>
+          <span class="pill">Time Management</span>
+          <span class="pill">Adaptability</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-card-title"><i class="fa-solid fa-toolbox"></i> Tools &amp; Platforms</p>
+        <div class="pill-list">
+          <span class="pill">VS Code</span>
+          <span class="pill">Eclipse IDE</span>
+          <span class="pill">MS Office</span>
+          <span class="pill">LinkedIn</span>
+          <span class="pill">GitHub</span>
+          <span class="pill">Canva</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <p class="section-label">Credentials</p>
+    <h2>Training &amp; Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <i class="fa-solid fa-award cert-icon"></i>
+        <h3>Java Enterprise Apps</h3>
+        <p class="cert-sub">Digital Transformation Curriculum</p>
+        <p class="cert-sub">NIIT, Anna Nagar, Chennai</p>
+        <span class="cert-badge">Nov 2021 – May 2024</span>
+      </div>
+
+      <div class="cert-card">
+        <i class="fa-solid fa-award cert-icon"></i>
+        <h3><a href="https://unifiedmentor.com/verify-certificate/UMID24042532576" target="_blank">Frontend Development Internship <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+        <p class="cert-sub">Professional Internship</p>
+        <p class="cert-sub">Unified Mentor, Gurgaon (Remote)</p>
+        <span class="cert-badge">Apr 2025 - May 2025</span>
+    </div>
+    
+    <div class="cert-card">
+        <i class="fa-solid fa-award cert-icon"></i>
+        <h3><a href="https://archive.nptel.ac.in/content/noc/NOC25/SEM2/Ecertificates/106/noc25-cs107/Course/NPTEL25CS107S37520104110515905.pdf" target="_blank">Cloud Computing <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+        <p class="cert-sub">Elite Certification</p>
+        <p class="cert-sub">NPTEL – IIT Kharagpur (Online)</p>
+        <span class="cert-badge">Jul 2025 - Oct 2025</span>
+    </div>
+    
+    <div class="cert-card">
+        <i class="fa-solid fa-award cert-icon"></i>
+        <h3><a href="https://drive.google.com/file/d/1HK1l6jcSWfmq1JorUg26vzEEBAaBagjB/view" target="_blank">Java Training Internship <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                <p class="cert-sub">Professional Training</p>
+                <p class="cert-sub">Besant Technologies, Chennai (Remote)</p>
+                <span class="cert-badge">Oct 2025 - Nov 2025</span>
+              </div>
+
+      <div class="cert-card">
+        <i class="fa-solid fa-award cert-icon"></i>
+        <h3>Software Testing</h3>
+        <p class="cert-sub">Advanced Training Program</p>
+        <p class="cert-sub">QSpiders, Chennai</p>
+        <span class="cert-badge">Dec 2025 – Present</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="languages">
+    <p class="section-label">Communication</p>
+    <h2>Languages</h2>
+    <div class="lang-list">
+      <span class="lang-chip"><i class="fa-solid fa-language"></i> Tamil — Native</span>
+      <span class="lang-chip"><i class="fa-solid fa-language"></i> English — Fluent</span>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-label">Get in Touch</p>
+    <h2>Ready to Collaborate?</h2>
+    <p class="sub">I'm actively looking for entry-level software development or testing roles. Reach out and let's discuss how my skills can contribute to your team.</p>
+    <a href="mailto:harishhari0408@gmail.com" class="btn btn-primary" style="font-size:1rem;padding:.85rem 2rem;">
+      <i class="fa-solid fa-envelope"></i> Send Me an Email
     </a>
-</div>
-                    <div class="p-4 bg-white rounded-xl shadow-md">
-    <i data-lucide="phone" class="w-6 h-6 text-primary mx-auto mb-2"></i>
-    <a href="tel:+919486495181" class="font-semibold text-sm">
-        +91 9486495181
-    </a>
-</div>
-                    <a href="https://linkedin.com/in/harishjayakumar8" target="_blank" class="p-4 bg-white rounded-xl shadow-md hover:bg-primary/10 transition duration-200">
-                        <i data-lucide="linkedin" class="w-6 h-6 text-primary mx-auto mb-2"></i>
-                        <p class="font-semibold text-sm">LinkedIn Profile</p>
-                    </a>
-                    <a href="https://github.com/harishjayakumar-8" target="_blank" class="p-4 bg-white rounded-xl shadow-md hover:bg-primary/10 transition duration-200">
-                        <i data-lucide="github" class="w-6 h-6 text-primary mx-auto mb-2"></i>
-                        <p class="font-semibold text-sm">GitHub Profile</p>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. Projects Section -->
-        <section id="projects" class="py-10">
-            <h3 class="text-3xl font-bold mb-10 section-heading">My Projects</h3>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Project Card 1: DBZ Accessories -->
-                <div class="project-card bg-white rounded-2xl shadow-2xl overflow-hidden group border border-primary/20">
-                    <div class="p-6">
-                        <h4 class="text-2xl font-bold text-primary mb-2">DBZ Accessories (E-commerce)</h4>
-                        <p class="text-dark/80 mb-4">
-                            Developed a responsive e-commerce platform for automobile accessories.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs font-medium px-2 py-1 bg-primary text-white rounded-full">HTML</span>
-                            <span class="text-xs font-medium px-2 py-1 bg-primary text-white rounded-full">CSS</span>
-                            <span class="text-xs font-medium px-2 py-1 bg-primary text-white rounded-full">JavaScript</span>
-                        </div>
-                    </div>
-                    <div class="project-overlay bg-white text-blue p-6 pt-0 flex flex-col justify-end">
-                        <h5 class="text-lg text-primary font-semibold mb-2">Key Contributions:</h5>
-                        <ul class="list-disc list-inside text-sm space-y-1">
-                            <li>Developed an e-commerce website for automobile accessories as a final project submission.</li>
-                            <li>Built the front-end using HTML, CSS, and JavaScript, focusing on responsive design and user experience.</li>
-                            <li>Collaborated with a team and contributed specifically to front-end development under the guidance of a mentor.</li>
-                        </ul>
-
-                        <button onclick="window.open('https://harishjayakumar-8.github.io/DBZ-Automobile-Accessories/index.html', '_blank')" 
-                                class="mt-4 px-4 py-2 bg-primary text-white font-semibold justify-center border border-white-400 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md flex items-center gap-2">
-                                Live demo
-                            <i data-lucide="external-link"></i>
-                        </button>
-                        <button onclick="window.open('https://github.com/harishjayakumar-8/DBZ-Automobile-Accessories', '_blank')" 
-                                class="mt-4 px-4 py-2 bg-primary text-white font-semibold justify-center border border-white-400 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md flex items-center gap-2">
-                                View Code
-                            <i data-lucide="github"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Project Card 2: Personal Portfolio -->
-                <div class="project-card bg-white rounded-2xl shadow-2xl overflow-hidden group border border-primary/20">
-                    <div class="p-6">
-                        <h4 class="text-2xl font-bold text-primary mb-2">Personal Portfolio Website</h4>
-                        <p class="text-dark/80 mb-4">
-                            A dedicated platform to showcase skills, academic projects, and achievements.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="text-xs font-medium px-2 py-1 bg-primary text-white rounded-full">HTML</span>
-                            <span class="text-xs font-medium px-2 py-1 bg-primary text-white rounded-full">CSS</span>
-                            <span class="text-xs font-medium px-2 py-1 bg-primary text-white rounded-full">JavaScript</span>
-                        </div>
-                    </div>
-                    <div class="project-overlay bg-white text-blue p-6 pt-0 flex flex-col justify-end">
-                        <h5 class="text-lg text-primary font-semibold mb-2">Key Contributions:</h5>
-                        <ul class="list-disc list-inside text-sm space-y-1">
-                            <li>Developed a personal portfolio website to showcase my skills, projects, and achievements.</li>
-                            <li>Designed and built the front-end using HTML, CSS, and JavaScript, making sure it’s responsive and looks good on all devices.</li>
-                            <li>Added interactive elements and smooth navigation to give a better user experience and make the site easy to use.</li>
-                        </ul>
-
-                            <button onclick="window.open('https://harishjayakumar-8.github.io/harishjayakumar-portfolio/', '_blank')" 
-                                    class="mt-4 px-4 py-2 bg-primary text-white font-semibold justify-center border border-white-400 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md flex items-center gap-2">
-                                    Live demo
-                                <i data-lucide="external-link"></i>
-                            </button>
-                            <button onclick="window.open('https://github.com/harishjayakumar-8/harishjayakumar-portfolio', '_blank')" 
-                                    class="mt-4 px-4 py-2 bg-primary text-white font-semibold justify-center border border-white-400 rounded-lg hover:bg-blue-700 transition duration-200 shadow-md flex items-center gap-2">
-                                    View Code
-                                <i data-lucide="github"></i>
-                            </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-               <!-- 3. Education Section -->
-        <section id="education" class="py-10 ">
-            <h3 class="text-3xl font-bold mb-8 mt-20 section-heading">Education</h3>
-            <div class="space-y-8 relative pl-6 md:pl-0">
-                <!-- Vertical timeline connector (hidden on mobile, centered on desktop) -->
-                <div class="absolute left-3 md:left-1/2 w-0.5 bg-primary/30 h-full transform -translate-x-1/2 hidden md:block"></div>
-
-                <!-- Education 1: MCA -->
-                <div class="flex flex-col md:flex-row items-center justify-start md:justify-center w-full">
-                    <div class="md:w-1/2 md:text-right md:pr-10">
-                        <p class="text-lg font-bold text-primary">Dr. MGR Educational and Research Institute</p>
-                        <p class="text-sm text-dark/70">Chennai, India</p>
-                    </div>
-                    <!-- Dot -->
-                    <div class="absolute left-0 md:static md:w-auto w-6 h-6 rounded-full bg-primary ring-4 ring-secondary transform md:translate-x-0 -translate-x-3.5 flex-shrink-0"></div>
-                    <div class="md:w-1/2 md:pl-10 md:text-left pt-2 md:pt-0 pl-4 md:pl-0 border-l-4 border-primary/30 md:border-l-0 md:border-r-0">
-                        <div class="bg-white p-6 rounded-xl shadow-lg border border-primary/20 w-full md:w-4/5">
-                            <p class="font-semibold mb-1">Master of Computer Applications (MCA)</p>
-                            <p class="text-sm text-dark/80">2024-present</p>
-                            <p class="text-sm mt-2 text-dark/70">Current CGPA: 7.71 (Upto 1st sem)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Education 2: BCA -->
-                <div class="flex flex-col md:flex-row items-center justify-start md:justify-center w-full">
-                    <div class="md:w-1/2 md:pl-10 md:text-right order-2 md:order-1 pt-2 md:pt-0 pl-4 md:pl-0 border-l-4 border-primary/30 md:border-l-0 md:border-r-0">
-                        <div class="bg-white p-6 rounded-xl shadow-lg border border-primary/20 w-full md:w-4/5 md:ml-20">
-                            <p class="font-semibold mb-1">BCA - Digital Technology</p>
-                            <p class="text-sm text-dark/80">2021-2024</p>
-                            <p class="text-sm mt-2 text-dark/70">Final CGPA: 7.0</p>
-                        </div>
-                    </div>
-                    <!-- Dot -->
-                    <div class="absolute left-0 top-[calc(50%+1rem)] md:top-auto md:static md:w-auto w-6 h-6 rounded-full bg-primary ring-4 ring-secondary transform md:translate-x-0 -translate-x-3.5 flex-shrink-0 order-1 md:order-2"></div>
-            
-            <div class="md:w-1/2 md:pl-10 order-3 md:order-3 pt-2 md:pt-0">
-                        <p class="text-lg font-bold text-primary">Dr. MGR Educational and Research Institute</p>
-                        <p class="text-sm text-dark/70">Chennai, India</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-<!-- 4. Technical Skills Section -->
-<section id="skills" class="py-10">
-    <h3 class="text-3xl font-bold mb-8 mt-20 section-heading">Skills</h3>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Technical Skills -->
-        <div class="p-6 bg-white rounded-2xl shadow-xl border border-primary/20">
-            <h4 class="text-2xl font-semibold mb-4 text-primary flex items-center"><i data-lucide="cpu" class="w-6 h-6 mr-2"></i> Technical Expertise</h4>
-            <div class="flex flex-wrap gap-3">
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">HTML</span>
-                <span class="skill-tag">CSS</span>
-                <span class="skill-tag">Data Structures & Algorithms</span>
-                <span class="skill-tag">C++</span>
-                <span class="skill-tag">JavaScript</span>
-                <span class="skill-tag">Python</span>
-            </div>
-        </div>
-
-        <!-- Soft Skills -->
-        <div class="p-6 bg-white rounded-2xl shadow-xl border border-primary/20">
-            <h4 class="text-2xl font-semibold mt-1 mb-4 text-primary flex items-center"><i data-lucide="handshake" class="w-6 h-6 mr-2"></i> Soft Skills</h4>
-            <div class="flex flex-wrap gap-3">
-                <span class="skill-tag">Communication</span>
-                <span class="skill-tag">Problem-solving</span>
-                <span class="skill-tag">Critical Thinking</span>
-                <span class="skill-tag">Time Management</span>
-                <span class="skill-tag">Adaptability / Flexibility</span>
-                <span class="skill-tag">Teamwork / Collaboration</span>
-            </div>
-        </div>
-
-        <!-- Tools & Platforms -->
-        <div class="p-6 bg-white rounded-2xl shadow-xl border border-primary/20">
-            <h4 class="text-2xl font-semibold mt-1 mb-4 text-primary flex items-center"><i data-lucide="app-window"></i> Tools & Platforms</h4>
-            <div class="flex flex-wrap gap-3">
-                <span class="skill-tag">VS Code</span>
-                <span class="skill-tag">Eclipse IDE</span>
-                <span class="skill-tag">Ms Office</span>
-                <span class="skill-tag">LinkedIn</span>
-                <span class="skill-tag">GitHub</span>
-                <span class="skill-tag">Canva</span>
-            </div>
-        </div>
+    <div class="social-row">
+      <a href="https://linkedin.com/in/harishjayakumar8" target="_blank" class="social-link"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://github.com/harishjayakumar-8" target="_blank" class="social-link"><i class="fa-brands fa-github"></i></a>
+      <a href="mailto:harishhari0408@gmail.com" class="social-link"><i class="fa-solid fa-envelope"></i></a>
+      <a href="tel:+919486495181" class="social-link"><i class="fa-solid fa-phone"></i></a>
     </div>
+  </section>
+</main>
 
-<!-- 5. Certifications Section -->
-<section id="certificates" class="py-12">
-    <div class="container">
+<footer>
+  &copy; 2025 Harish J
+</footer>
 
-        <div class="section-header mb-10">
-            <h3 class="text-3xl font-bold mb-1 mt-20 section-heading">Professional Training & Certifications</h3>
-        </div>
+<script>
+  // -- Mobile menu toggle --
+  const ham = document.getElementById('ham');
+  const menu = document.getElementById('mobile-menu');
+  ham.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => menu.classList.remove('open'))
+  );
 
-        <div class="certificates-grid grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+  // -- Smooth scroll for anchor links --
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
 
-            <!-- 1. Java Enterprise Apps -->
-            <div class="certificate-card bg-white rounded-2xl shadow-2xl p-6 border border-primary/20">
-                <div class="certificate-icon mb-3 text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor"
-                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                        <circle cx="12" cy="8" r="6"/>
-                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
-                    </svg>
-                </div>
+  // -- Scroll-based active nav highlight --
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sectionIds = ['home', 'profile', 'projects', 'education', 'skills', 'certificates', 'languages', 'contact'];
 
-                <h3 class="text-xl font-bold text-primary">Java Enterprise Apps</h3>
-                <p class="subtitle text-dark/80">Digital Transformation Curriculum</p>
-                <p class="institution text-dark/70">NIIT, Anna Nagar, Chennai</p>
-                <span class="text-xs font-medium px-3 py-1 bg-primary text-white rounded-full inline-block mt-2">
-                    2021 – 2024
-                </span>
-            </div>
+  const setActive = (id) => {
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${id}`) {
+        link.classList.add('active');
+      }
+    });
+  };
 
-            <!-- 2. Frontend Developer Internship -->
-            <div class="certificate-card bg-white rounded-2xl shadow-2xl p-6 border border-primary/20">
-                <div class="certificate-icon mb-3 text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor"
-                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                        <circle cx="12" cy="8" r="6"/>
-                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
-                    </svg>
-                </div>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActive(entry.target.id);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '-10% 0px -60% 0px',
+    threshold: 0
+  });
 
-                <h3 class="text-xl font-bold text-primary"><a href="https://unifiedmentor.com/verify-certificate/UMID24042532576">Frontend Development Internship</a> </h3>
-                <p class="subtitle text-dark/80">Professional Internship</p>
-                <p class="institution text-dark/70">Unified Mentor, Gurgaon, Haryana (Remote)</p>
-                <span class="text-xs font-medium px-3 py-1 bg-primary text-white rounded-full inline-block mt-2">
-                    2025
-                </span>
-            </div>
-
-            <!-- 3. Java Training Internship -->
-            <div class="certificate-card bg-white rounded-2xl shadow-2xl p-6 border border-primary/20">
-                <div class="certificate-icon mb-3 text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor"
-                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                        <circle cx="12" cy="8" r="6"/>
-                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
-                    </svg>
-                </div>
-
-                <h3 class="text-xl font-bold text-primary">Java Training Internship</h3>
-                <p class="subtitle text-dark/80">Professional Training</p>
-                <p class="institution text-dark/70">Besant Technologies, Chennai (Remote)</p>
-                <span class="text-xs font-medium px-3 py-1 bg-primary text-white rounded-full inline-block mt-2">
-                    2025
-                </span>
-            </div>
-
-            <!-- 4. Cloud Computing Certification -->
-            <div class="certificate-card bg-white rounded-2xl shadow-2xl p-6 border border-primary/20">
-                <div class="certificate-icon mb-3 text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor"
-                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                        <circle cx="12" cy="8" r="6"/>
-                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
-                    </svg>
-                </div>
-                
-                <h3 class="text-xl font-bold text-primary"><a href="https://archive.nptel.ac.in/content/noc/NOC25/SEM2/Ecertificates/106/noc25-cs107/Course/NPTEL25CS107S37520104110515905.pdf" >Cloud Computing</a></h3>
-                <p class="subtitle text-dark/80">Elite Certification</p>
-                <p class="institution text-dark/70">NPTEL – IIT Kharagpur (Online)</p>
-                <span class="text-xs font-medium px-3 py-1 bg-primary text-white rounded-full inline-block mt-2">
-                    2025
-                </span>
-            </div>
-
-            <!-- 5. Software Testing Certification -->
-            <div class="certificate-card bg-white rounded-2xl shadow-2xl p-6 border border-primary/20">
-                <div class="certificate-icon mb-3 text-primary">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" stroke="currentColor"
-                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                        <circle cx="12" cy="8" r="6"/>
-                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
-                    </svg>
-                </div>
-
-                <h3 class="text-xl font-bold text-primary">Software Automation Testing(Selenium)</h3>
-                <p class="subtitle text-dark/80">Advanced Training Program</p>
-                <p class="institution text-dark/70">QSpiders, Chennai</p>
-                <span class="text-xs font-medium px-3 py-1 bg-primary text-white rounded-full inline-block mt-2">
-                    2025 – Present
-                </span>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-    </div>
-</section>
-
-
-        <!-- 6. Languages Section -->
-        <section id="languages" class="py-10">
-            <h3 class="text-3xl font-bold mb-8 section-heading">Languages</h3>
-            <div class="flex flex-wrap gap-4">
-                <div class="px-6 py-3 bg-white rounded-full shadow-md border border-primary/20 flex items-center"><i data-lucide="languages" class="w-5 h-5 text-blue-600"></i> Tamil (Native)</div>
-                <div class="px-6 py-3 bg-white rounded-full shadow-md border border-primary/20 flex items-center"><i data-lucide="languages" class="w-5 h-5 text-blue-600"></i> English (Fluent)</div>
-                <div class="px-6 py-3 bg-white rounded-full shadow-md border border-primary/20 flex items-center"><i data-lucide="languages" class="w-5 h-5 text-blue-600"></i> Malayalam (Basic)</div>
-            </div>
-        </section>
-
-        <!-- 7. Contact Section -->
-        <section id="contact" class="py-10 text-center">
-    <h3 class="text-4xl font-bold mb-4">Ready to collaborate?</h3>
-    <p class="text-lg text-dark/70 mb-8 max-w-2xl mx-auto">
-        I'm actively looking for an entry-level software development or testing roles. Reach out, and let's discuss how my skills can contribute to your team's success.
-    </p>
-    <a href="mailto:harishhari0408@gmail.com" class="px-8 py-4 bg-primary text-white text-xl font-semibold rounded-xl shadow-2xl hover:bg-primary/90 transition duration-300 transform hover:scale-[1.05]">
-        Send Me an Email
-    </a>
-    <div class="mt-8 flex justify-center space-x-6">
-        <a href="https://linkedin.com/in/harishjayakumar8" target="_blank" class="text-dark/80 hover:text-primary transition duration-200">
-            <i data-lucide="linkedin" class="w-8 h-8"></i>
-        </a>
-        <a href="https://github.com/harishjayakumar-8" target="_blank" class="text-dark/80 hover:text-primary transition duration-200">
-            <i data-lucide="github" class="w-8 h-8"></i>
-        </a>
-        <a href="mailto:harishhari0408@gmail.com" class="text-dark/80 hover:text-primary transition duration-200">
-            <i data-lucide="mail" class="w-8 h-8"></i>
-        </a>
-        <a href="tel:+919486495181" class="text-dark/80 hover:text-primary transition duration-200">
-            <i data-lucide="phone" class="w-8 h-8"></i>
-        </a>
-    </div>
-</section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p>&copy; 2025 Harish J. Built with HTML, Tailwind CSS, and a touch of Soft Blue.</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript for Mobile Menu and Utility -->
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
-
-        // 1. Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // 2. Custom Alert/Modal Replacement (instead of alert())
-        function showAlert(message) {
-            // Simple display of a message within the fixed header area
-            const messageBox = document.createElement('div');
-            messageBox.innerHTML = `
-                <div id="custom-alert" class="fixed top-0 left-1/2 transform -translate-x-1/2 mt-4 z-[100] p-4 rounded-xl bg-primary text-white shadow-2xl transition duration-500 opacity-0 scale-90">
-                    <div class="flex items-center space-x-2">
-                        <i data-lucide="info" class="w-5 h-5"></i>
-                        <span>${message}</span>
-                        <button onclick="document.getElementById('custom-alert').remove()" class="ml-4 text-white/80 hover:text-white transition duration-200">
-                             <i data-lucide="x" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(messageBox.firstElementChild);
-            lucide.createIcons(); // Re-initialize icons for the new element
-
-            // Animate in
-            setTimeout(() => {
-                const alertElement = document.getElementById('custom-alert');
-                if (alertElement) {
-                    alertElement.classList.remove('opacity-0', 'scale-90');
-                }
-            }, 10);
-
-            // Auto-remove after 5 seconds
-            setTimeout(() => {
-                const alertElement = document.getElementById('custom-alert');
-                if (alertElement) {
-                    alertElement.classList.add('opacity-0', 'scale-90');
-                    setTimeout(() => alertElement.remove(), 500);
-                }
-            }, 5000);
-        }
-
-        // 3. Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId && targetId !== '#') {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-    </script>
-
-    <!-- Custom component style for skills -->
-    <script>
-        // Utility to inject custom skill tag style
-        document.querySelectorAll('.skill-tag').forEach(tag => {
-            tag.classList.add('px-4', 'py-2', 'bg-white', 'text-primary', 'text-sm', 'font-medium', 'rounded-full', 'shadow-sm', 'border', 'border-blue-400', 'border-primary/40', 'transition', 'duration-200', 'hover:bg-primary/20', 'cursor-default');
-        });
-    </script>
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+</script>
 </body>
-</html>
+</html> 
