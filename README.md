@@ -23,14 +23,11 @@ This portfolio showcases my projects, technical skills, education, and certifica
 A responsive e-commerce platform for automobile accessories, designed with a focus on clean UI, usability, and smooth user experience.
 
 **Tech Stack:** HTML, CSS, JavaScript
+🔗 **GitHub Repository:**  
+https://github.com/harishjayakumar-8/DBZ-Automobile-Accessories  
 
-🔗 **GitHub Repository:**
-https://github.com/harishjayakumar-8/DBZ-Automobile-Accessories
-
-🌐 **Live Website:**
-https://harishjayakumar-8.github.io/DBZ-Automobile-Accessories/index.html
-
----
+🌐 **Live Website:**  
+[Visit Live Site](https://harishjayakumar-8.github.io/DBZ-Automobile-Accessories/index.html)
 
 ### 🔹 Personal Portfolio Website
 
