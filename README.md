@@ -1,37 +1,39 @@
-# 🌐 Harish J – Personal Portfolio
+<h1 align="center">🌐 Harish J</h1>
 
-Welcome to my personal portfolio repository.
+<p align="center">
+  MCA Graduate • Software Developer • Software Tester
+</p>
 
-I am an MCA graduate with a strong foundation in programming, data structures, and problem-solving. I’m actively seeking an **entry-level role in Software Development or Software Testing**, where I can apply my skills, contribute to real-world projects, and continue growing as an IT professional.
+<p align="center">
+  <a href="https://harishjayakumar-8.github.io/harishjayakumar-portfolio/">🌍 Portfolio</a> •
+  <a href="https://github.com/harishjayakumar-8">💻 GitHub</a> •
+  <a href="https://linkedin.com/in/harishjayakumar8">🔗 LinkedIn</a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=flat-square"/>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square"/>
+  <img src="https://img.shields.io/badge/SQL-003B57?style=flat-square"/>
+</p>
 
 ---
 
-## 🚀 Live Portfolio
+## 👨‍💻 About Me
 
-🌐 **Portfolio Website**
-https://harishjayakumar-8.github.io/harishjayakumar-portfolio/
-
----
-
-## 🛠 Tech Stack
-
-* **Languages & Web:** HTML5, CSS3, JavaScript, Java, SQL
-* **Core Concepts:** Data Structures & Algorithms, Manual Testing
-* **Tools & Platforms:** VS Code, Eclipse IDE, GitHub, MS Office, Canva
+I am an MCA graduate with a strong foundation in programming, data structures, and problem-solving.
+I am seeking an **entry-level role in Software Development or Software Testing** to apply my skills and grow professionally.
 
 ---
 
-## 💼 Projects
+## 🚀 Projects
 
 ### 🔹 DBZ Accessories – E-commerce Website (2024)
 
-A responsive e-commerce platform for automobile accessories developed as a final-year project.
-
-**Key Contributions:**
-
-* Built the front-end using HTML, CSS, and JavaScript
-* Focused on responsive design and user experience
-* Collaborated in a team and contributed to frontend development under mentorship
+* Responsive automobile accessories website
+* Built using HTML, CSS, JavaScript
+* Focused on UI/UX and responsiveness
 
 🔗 GitHub:
 https://github.com/harishjayakumar-8/DBZ-Automobile-Accessories
@@ -43,13 +45,9 @@ https://harishjayakumar-8.github.io/DBZ-Automobile-Accessories/index.html
 
 ### 🔹 Personal Portfolio Website (2025)
 
-A responsive portfolio website to showcase my profile, skills, and projects.
-
-**Key Contributions:**
-
-* Designed and developed a clean, structured UI
-* Ensured responsiveness across devices
-* Implemented smooth navigation and interactive elements
+* Clean and structured portfolio design
+* Fully responsive across devices
+* Smooth navigation and interaction
 
 🔗 GitHub:
 https://github.com/harishjayakumar-8/harishjayakumar-portfolio
@@ -59,74 +57,66 @@ https://harishjayakumar-8.github.io/harishjayakumar-portfolio/
 
 ---
 
-## 🎓 Education
+## 🛠 Tech Stack
 
-**Master of Computer Applications (MCA)**
-Dr. MGR Educational and Research Institute, Chennai
-*2024 – Present*
-CGPA: 7.8 (Up to 2nd Semester)
+<p align="center">
 
-**Bachelor of Computer Applications (BCA – Digital Technology)**
-Dr. MGR Educational and Research Institute, Chennai
-*2021 – 2024*
-CGPA: 7.0
+Java • SQL • JavaScript
+HTML5 • CSS3
+Data Structures & Algorithms • Manual Testing
+VS Code • Eclipse • GitHub • MS Office • Canva
+
+</p>
 
 ---
 
-## 📜 Certifications & Training
+## 🎓 Education
 
-* **Java Enterprise Applications** – NIIT, Chennai *(2021 – 2024)*
-* **Frontend Developer Internship** – Unified Mentor *(2025)*
-* **Cloud Computing (Elite)** – NPTEL, IIT Kharagpur *(2025)*
-* **Software Testing Training** – QSpiders, Chennai *(2025 – Present)*
+**MCA**
+Dr. MGR Educational and Research Institute, Chennai
+2024 – Present | CGPA: 7.8
+
+**BCA (Digital Technology)**
+Dr. MGR Educational and Research Institute
+2021 – 2024 | CGPA: 7.0
+
+---
+
+## 📜 Certifications
+
+* Java Enterprise Applications – NIIT
+* Frontend Developer Internship – Unified Mentor
+* Cloud Computing (Elite) – NPTEL, IIT Kharagpur
+* Software Testing Training – QSpiders
 
 ---
 
 ## 🧠 Skills
 
-### 💻 Technical Skills
+**Technical:**
+Java • SQL • HTML • CSS • JavaScript • Manual Testing • DSA
 
-* Java
-* SQL
-* HTML, CSS, JavaScript
-* Manual Testing
-* Data Structures & Algorithms
-
-### 🛠 Tools
-
-* VS Code
-* Eclipse IDE
-* GitHub
-* MS Office
-* Canva
-
-### 🤝 Soft Skills
-
-* Communication
-* Problem-solving
-* Teamwork & Collaboration
-* Critical Thinking
-* Adaptability & Flexibility
-* Time Management
+**Soft Skills:**
+Communication • Problem Solving • Teamwork • Adaptability • Time Management
 
 ---
 
 ## 🌍 Languages
 
-* Tamil (Native)
-* English (Fluent)
+Tamil (Native) • English (Fluent)
 
 ---
 
 ## 📬 Contact
 
-📧 Email: [harishhari0408@gmail.com](mailto:harishhari0408@gmail.com)
-📱 Phone: +91 9486495181
-📍 Location: Sriperumbudur, Tamil Nadu
-
-🔗 LinkedIn: https://linkedin.com/in/harishjayakumar8
-💻 GitHub: https://github.com/harishjayakumar-8
+<p align="center">
+  📧 harishhari0408@gmail.com<br>
+  📱 +91 9486495181<br>
+  📍 Tamil Nadu, India
+</p>
 
 ---
 
-⭐ Feel free to explore my projects and connect with me for opportunities or collaboration.
+<p align="center">
+  ⭐ Open to opportunities and collaborations
+</p>
