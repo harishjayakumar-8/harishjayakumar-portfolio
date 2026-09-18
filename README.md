@@ -3,7 +3,25 @@
 ## 👨‍💻 About Me
 
 I am an MCA graduate with a strong foundation in programming, data structures, and problem-solving.  
-I am seeking an **entry-level role in Software Development or Software Testing** where I can apply my skills and grow professionally.
+I am currently working as an **SDE Intern**, gaining hands-on QA experience monitoring a production vehicle detection system, identifying and reproducing defects, and verifying fixes.  
+I am seeking an **entry-level Software Test Engineer / QA Engineer role** where I can apply my testing knowledge and grow professionally.
+
+---
+
+## 💼 Experience
+
+### 🔹 SDE Intern — Defect Scanner, a unit of Alphabt (July 2026 – Present, Hybrid)
+
+* Monitor the RBT vehicle lamp and parts detection system at the client plant
+* Identify and reproduce software, dashboard, UI/UX, backend, and detection-related defects
+* Annotate vehicle videos in CVAT to support object-detection model validation
+* Support verification/validation of the AI Roll & Brake project and YOLO-based model training
+
+### 🔹 Frontend Developer Intern — Unified Mentor (2025, Remote)
+
+* Developed a responsive personal portfolio website (HTML, CSS, JavaScript)
+* Tested UI functionality, navigation, responsiveness, and cross-browser behavior
+* Identified and fixed front-end issues to improve usability
 
 ---
 
@@ -39,6 +57,12 @@ https://harishjayakumar-8.github.io/harishjayakumar-portfolio
 
 ## 🛠 Skills
 
+### Manual & Automation Testing
+
+* Manual Testing (Functional, Regression, Smoke, Sanity, Integration)
+* Test Case Design, Defect Life Cycle, SDLC, STLC, Agile
+* Selenium WebDriver, Selenium IDE, TestNG
+
 ### Technical Skills
 
 * Java  
@@ -46,16 +70,22 @@ https://harishjayakumar-8.github.io/harishjayakumar-portfolio
 * HTML  
 * CSS  
 * JavaScript  
-* Manual Testing  
+* Python Basics, Flask, REST API Basics
 * Data Structures & Algorithms  
 
 ### Tools
 
 * VS Code  
 * Eclipse IDE  
+* PyCharm
 * GitHub  
+* Jira, Postman, MySQL
+* CVAT
 * MS Office  
-* Canva  
+
+### AI Tools
+
+* ChatGPT, Google Gemini, GitHub Copilot, Claude AI, Blackbox AI, Lovable
 
 ### Soft Skills
 
@@ -73,7 +103,7 @@ https://harishjayakumar-8.github.io/harishjayakumar-portfolio
 **Master of Computer Applications (MCA)**  
 Dr. MGR Educational and Research Institute  
 Chennai, Tamil Nadu  
-2024 – Present  
+2024 – 2026 | CGPA: 8.07  
 
 **Bachelor of Computer Applications (BCA – Digital Technology)**  
 Dr. MGR Educational and Research Institute  
@@ -96,9 +126,9 @@ Unified Mentor
 NPTEL, IIT Kharagpur  
 2025  
 
-**Software Testing Training**  
+**Software Testing and Selenium Automation Training**  
 QSpiders, Chennai  
-2025 – Present  
+2025 – 2026  
 
 ---
 
@@ -113,7 +143,7 @@ QSpiders, Chennai
 
 Email: harishhari0408@gmail.com  
 Phone: +91 9486495181  
-Location: Tamil Nadu, India  
+Location: Sriperumbudur, Tamil Nadu  
 
 LinkedIn: https://linkedin.com/in/harishjayakumar8  
 GitHub: https://github.com/harishjayakumar-8
