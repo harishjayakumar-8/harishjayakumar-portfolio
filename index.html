@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Harish J — QA Engineer focused on Software Testing & Automation. MCA graduate skilled in manual testing, Selenium automation, and frontend development." />
+<title>Harish J — QA Engineer | Software Testing & Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+/* ============================================================
+   BASE / VARIABLES
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Sky-blue light theme */
+  --blue: #4C8BF0;
+  --blue-deep: #3E72D1;
+  --blue-lt: #EAF2FE;
+  --blue-lt-2: #F3F8FF;
+  --dark: #16213A;
+  --mid: #57647C;
+  --soft: #7C8AA3;
+  --light: #F6F9FE;
+  --white: #FFFFFF;
+  --border: #DEE8F7;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 4px 22px rgba(76, 139, 240, .10);
+  --shadow-hover: 0 10px 34px rgba(76, 139, 240, .16);
+  --nav-bg: rgba(246, 249, 254, .85);
+  --glass: rgba(255, 255, 255, .6);
+  --section-max: 1320px;
+  --transition: .25s ease;
+}
+
+html[data-theme="dark"] {
+  --blue: #6FA3F7;
+  --blue-deep: #5C92ED;
+  --blue-lt: rgba(111, 163, 247, .14);
+  --blue-lt-2: rgba(111, 163, 247, .07);
+  --dark: #EAF1FB;
+  --mid: #AEBBD4;
+  --soft: #8392AE;
+  --light: #0E1626;
+  --white: #16223A;
+  --border: #25324C;
+  --shadow: 0 4px 24px rgba(0, 0, 0, .28);
+  --shadow-hover: 0 10px 36px rgba(0, 0, 0, .36);
+  --nav-bg: rgba(14, 22, 38, .85);
+  --glass: rgba(22, 34, 58, .55);
+}
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  line-height: 1.7;
+  transition: background var(--transition), color var(--transition);
+  overflow-x: hidden;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 clamp(0.6rem, 1.5vw, 0.8rem);
+  box-shadow: 0 0 0 rgba(16,33,58,0);
+  transition: background var(--transition), border-color var(--transition), box-shadow .3s ease;
+}
+
+nav.scrolled { box-shadow: 0 4px 20px rgba(16,33,58,.07); }
+html[data-theme="dark"] nav.scrolled { box-shadow: 0 4px 22px rgba(0,0,0,.3); }
+
+.nav-inner {
+  max-width: var(--section-max);
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  height: 64px;
+  gap: .75rem;
+}
+
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.7rem;
+  color: var(--blue);
+  text-decoration: none;
+  flex-shrink: 0;
+  letter-spacing: .01em;
+}
+
+.nav-links {
+  display: flex;
+  justify-self: end;
+  align-items: center;
+  gap: .15rem;
+  list-style: none;
+  flex-wrap: wrap;
+  margin-right: .35rem;
+}
+
+.nav-links a {
+  display: block;
+  padding: .42rem .78rem;
+  font-size: .94rem;
+  font-weight: 500;
+  color: var(--mid);
+  text-decoration: none;
+  border-radius: 99px;
+  position: relative;
+  transition: background .2s ease, color .2s ease;
+  white-space: nowrap;
+}
+
+.nav-links a:hover { background: var(--blue-lt); color: var(--blue); }
+
+.nav-links a.active {
+  background: var(--blue-lt);
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.nav-right { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: border-color .2s, transform .2s, background .2s;
+}
+.theme-toggle:hover { border-color: var(--blue); transform: translateY(-1px); }
+.theme-toggle .fa-sun { display: none; }
+html[data-theme="dark"] .theme-toggle .fa-sun { display: inline; }
+html[data-theme="dark"] .theme-toggle .fa-moon { display: none; }
+
+#ham {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .4rem;
+}
+
+#ham span {
+  display: block;
+  width: 21px;
+  height: 2px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: .3s;
+}
+#ham span + span { margin-top: 5px; }
+#ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#ham.open span:nth-child(2) { opacity: 0; }
+#ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  padding: 0 clamp(0.6rem, 1.5vw, 0.8rem);
+  background: var(--white);
+  border-top: 1px solid transparent;
+  transition: max-height .3s ease, padding .3s ease;
+}
+
+.mobile-menu.open {
+  max-height: 480px;
+  padding: 1rem clamp(0.6rem, 1.5vw, 0.8rem) 1.2rem;
+  border-top: 1px solid var(--border);
+}
+
+.mobile-menu a {
+  padding: .65rem 1rem;
+  background: var(--blue-lt);
+  color: var(--blue);
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  text-align: center;
+  transition: background .2s;
+}
+.mobile-menu a:hover { background: var(--blue); color: #fff; }
+
+/* ============================================================
+   GLOBAL LAYOUT / COMPONENTS
+   ============================================================ */
+main {
+  max-width: var(--section-max);
+  margin: auto;
+  padding: 0 clamp(0.6rem, 1.5vw, 0.8rem);
+  margin-top: 64px;
+}
+
+section { padding: 64px 0; scroll-margin-top: 76px; }
+section + section { border-top: 1px solid var(--border); }
+
+.section-head { margin-bottom: 2.2rem; }
+
+.section-label {
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: .55rem;
+  display: block;
+}
+
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.section-sub {
+  color: var(--mid);
+  font-size: .98rem;
+  margin-top: .5rem;
+  max-width: 620px;
+}
+
+h3 {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: var(--dark);
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: box-shadow .3s, transform .3s, border-color .3s;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+  border-color: var(--blue);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .7rem 1.35rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: .9rem;
+  text-decoration: none;
+  transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(76, 139, 240, .32);
+}
+.btn-primary:hover { background: var(--blue-deep); }
+
+.btn-outline {
+  background: var(--white);
+  color: var(--dark);
+  border-color: var(--border);
+}
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+.btn-ghost {
+  background: var(--blue-lt);
+  color: var(--blue);
+}
+.btn-ghost:hover { background: var(--blue); color: #fff; }
+
+.tag {
+  font-size: .73rem;
+  font-weight: 600;
+  padding: .25rem .65rem;
+  background: var(--blue-lt);
+  color: var(--blue);
+  border-radius: 99px;
+  display: inline-block;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#home {
+  padding-top: clamp(2.5rem, 6vw, 4.5rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  top: -120px;
+  right: -160px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(76,139,240,.16), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-inner { position: relative; z-index: 1; max-width: 760px; }
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .86rem;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: .03em;
+  margin-bottom: 1.1rem;
+  padding: .4rem .9rem;
+  background: var(--blue-lt);
+  border-radius: 99px;
+}
+
+.hero-eyebrow .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38C172;
+  box-shadow: 0 0 0 0 rgba(56,193,114,.6);
+  animation: pulse-dot 2.4s ease infinite;
+}
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(56,193,114,.5); }
+  70% { box-shadow: 0 0 0 6px rgba(56,193,114,0); }
+  100% { box-shadow: 0 0 0 0 rgba(56,193,114,0); }
+}
+
+.hero-inner h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.6rem, 6.4vw, 4.4rem);
+  line-height: 1.08;
+  margin-bottom: .7rem;
+  font-weight: 400;
+}
+
+.hero-inner .role {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--blue-deep);
+  font-weight: 600;
+  margin-bottom: 1.1rem;
+}
+
+.hero-inner .bio {
+  font-size: 1rem;
+  color: var(--mid);
+  max-width: 540px;
+  margin-bottom: 2rem;
+}
+
+.btn-row { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 2.4rem; }
+
+.hero-contact-grid {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  flex-wrap: wrap;
+  max-width: 760px;
+}
+
+.hero-contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--blue);
+  transition: border-color .2s, color .2s, background .2s, transform .2s;
+  flex-shrink: 0;
+}
+
+.hero-contact-item:hover {
+  border-color: var(--blue);
+  background: var(--blue-lt);
+  transform: translateY(-2px);
+}
+
+.hero-contact-item i {
+  color: var(--blue);
+  font-size: 1.1rem;
+}
+.hero-contact-item span { display: none; }
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.about-text {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.about-text::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(76,139,240,.08), rgba(76,139,240,.18), rgba(76,139,240,.08));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: aboutBorderShift 8s linear infinite;
+  pointer-events: none;
+}
+
+.about-text p { color: var(--mid); margin-bottom: 1rem; font-size: .98rem; position: relative; z-index: 1; }
+.about-text p:last-child { margin-bottom: 0; }
+
+.about-points {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+
+.about-point {
+  display: flex;
+  align-items: flex-start;
+  gap: .8rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .9rem 1.1rem;
+  box-shadow: var(--shadow);
+}
+
+.about-point i {
+  color: var(--blue);
+  font-size: 1rem;
+  margin-top: .15rem;
+  flex-shrink: 0;
+}
+
+.about-point span { font-size: .9rem; color: var(--mid); }
+.about-point strong { color: var(--dark); }
+
+@keyframes aboutBorderShift {
+  0% { transform: translateX(-10%); }
+  50% { transform: translateX(10%); }
+  100% { transform: translateX(-10%); }
+}
+
+/* ============================================================
+   SKILLS
+   ============================================================ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.skill-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+  transition: border-color .25s, transform .25s;
+}
+
+.skill-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+
+.skill-card.primary-emphasis {
+  border-color: rgba(76,139,240,.35);
+  background: linear-gradient(160deg, var(--blue-lt-2), var(--white) 60%);
+}
+
+.skill-card-title {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-size: .98rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 1rem;
+}
+
+.skill-card-title i {
+  color: var(--blue);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-lt);
+  border-radius: 9px;
+  font-size: .9rem;
+  flex-shrink: 0;
+}
+
+.pill-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+.pill {
+  font-size: .8rem;
+  font-weight: 500;
+  padding: .35rem .8rem;
+  background: var(--blue-lt);
+  color: var(--blue);
+  border-radius: 99px;
+  border: 1px solid rgba(76,139,240,.18);
+}
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow .3s, transform .3s, border-color .3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-3px);
+  border-color: var(--blue);
+}
+
+.project-card.featured { border-color: rgba(76,139,240,.3); }
+
+.project-card-body { padding: 1.5rem 1.5rem .25rem; flex: 1; }
+
+.project-tag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .65rem;
+}
+
+.project-kind {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+.project-card-body h3 { color: var(--dark); margin-bottom: .5rem; font-size: 1.2rem; }
+.project-card-body p { font-size: .9rem; color: var(--mid); margin-bottom: .9rem; }
+
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .9rem; }
+
+.project-details {
+  font-size: .85rem;
+  color: var(--mid);
+  padding: 0 1.5rem .25rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  flex: 1;
+}
+
+.project-details li { display: flex; gap: .55rem; }
+.project-details li::before {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: var(--blue);
+  font-size: .7rem;
+  margin-top: .25rem;
+  flex-shrink: 0;
+}
+
+.project-actions {
+  display: flex;
+  gap: .6rem;
+  padding: 1.1rem 1.5rem 1.5rem;
+  margin-top: .9rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-actions a {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  padding: .55rem .8rem;
+  border-radius: 8px;
+  font-size: .82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: .2s;
+}
+
+.project-actions .a-primary { background: var(--blue); color: #fff; }
+.project-actions .a-primary:hover { background: var(--blue-deep); }
+.project-actions .a-outline { border: 1.5px solid var(--border); color: var(--dark); }
+.project-actions .a-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+/* ============================================================
+   EXPERIENCE
+   ============================================================ */
+.exp-track { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.exp-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  box-shadow: var(--shadow);
+  transition: border-color .25s, transform .25s;
+}
+.exp-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+.exp-card.current { border-color: rgba(76,139,240,.35); background: linear-gradient(160deg, var(--blue-lt-2), var(--white) 60%); }
+
+.exp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-bottom: .3rem;
+}
+
+.exp-head-left h3 { font-size: 1.2rem; margin-bottom: .2rem; }
+.exp-org { color: var(--blue-deep); font-weight: 600; font-size: .92rem; }
+.exp-mode { color: var(--soft); font-weight: 500; }
+
+.exp-date-badge {
+  flex-shrink: 0;
+  height: fit-content;
+  background: var(--blue-lt);
+  color: var(--blue);
+  padding: .4rem .8rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-weight: 600;
+  font-size: .8rem;
+  white-space: nowrap;
+}
+
+.exp-focus { font-size: .85rem; color: var(--soft); font-style: italic; margin: .5rem 0 .9rem; }
+
+.exp-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  font-size: .88rem;
+  color: var(--mid);
+}
+.exp-list li { display: flex; gap: .55rem; }
+.exp-list li::before {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: var(--blue);
+  font-size: .68rem;
+  margin-top: .3rem;
+  flex-shrink: 0;
+}
+
+.exp-links { margin-top: 1rem; display: flex; gap: .7rem; flex-wrap: wrap; }
+.exp-links a {
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--blue);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+}
+.exp-links a:hover { text-decoration: underline; }
+
+/* ============================================================
+   PUBLICATION
+   ============================================================ */
+.pub-card {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  background: linear-gradient(135deg, var(--blue-lt-2), var(--white));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
+}
+
+.pub-icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--blue-lt);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+
+.pub-body { flex: 1; min-width: 0; }
+.pub-body h3 { font-size: 1.15rem; margin-bottom: .4rem; }
+.pub-body p { color: var(--mid); font-size: .92rem; margin-bottom: .8rem; }
+
+.pub-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+.pub-meta span {
+  font-size: .76rem;
+  font-weight: 600;
+  padding: .3rem .7rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--mid);
+  border-radius: 99px;
+}
+
+/* ============================================================
+   EDUCATION
+   ============================================================ */
+.edu-track { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.edu-card-custom {
+  display: flex;
+  gap: 1.6rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  box-shadow: var(--shadow);
+  transition: border-color .25s, transform .25s;
+}
+
+.edu-card-custom:hover { border-color: var(--blue); transform: translateY(-2px); }
+
+.edu-date-badge {
+  flex: 0 0 110px;
+  height: fit-content;
+  background: var(--blue-lt);
+  color: var(--blue);
+  padding: .65rem .5rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-weight: 600;
+  font-size: .85rem;
+}
+
+.edu-content-main h3 { font-size: 1.2rem; margin-bottom: .35rem; }
+.edu-uni { color: var(--blue-deep); font-weight: 600; font-size: .9rem; margin-bottom: .5rem; display: block; }
+.edu-cgpa {
+  display: inline-block;
+  font-size: .82rem;
+  background: var(--blue-lt);
+  color: var(--blue);
+  padding: .2rem .75rem;
+  border-radius: 99px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   CERTIFICATIONS
+   ============================================================ */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.cert-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  box-shadow: var(--shadow);
+  transition: border-color .25s, transform .25s;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  min-height: 152px;
+}
+
+.cert-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+
+.cert-card.qa-primary {
+  border-color: rgba(76,139,240,.35);
+  background: linear-gradient(160deg, var(--blue-lt-2), var(--white) 60%);
+}
+
+.cert-card .cert-icon {
+  color: var(--blue);
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-lt);
+  border-radius: 9px;
+}
+
+.cert-card h3 { font-size: 1rem; font-weight: 600; color: var(--dark); font-family: 'DM Sans', sans-serif; }
+.cert-card h3 a { color: inherit; text-decoration: none; }
+.cert-card h3 a:hover { color: var(--blue); }
+.cert-card .cert-sub { font-size: .82rem; color: var(--mid); }
+
+.cert-badge {
+  display: inline-block;
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: .74rem;
+  font-weight: 600;
+  padding: .22rem .7rem;
+  background: var(--blue-lt);
+  color: var(--blue);
+  border-radius: 99px;
+  width: fit-content;
+}
+
+/* ============================================================
+   RESUME
+   ============================================================ */
+.resume-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.resume-grid.single-resume {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 920px;
+  margin-inline: auto;
+}
+
+.resume-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  box-shadow: var(--shadow);
+  transition: border-color .25s, transform .25s;
+  display: flex;
+  flex-direction: column;
+}
+
+.resume-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+
+.resume-card-top { display: flex; align-items: center; gap: .9rem; margin-bottom: 1rem; }
+
+.resume-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--blue-lt);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.resume-card-top h3 { font-size: 1.1rem; margin-bottom: .15rem; }
+.resume-card-top .resume-focus { font-size: .78rem; font-weight: 600; color: var(--soft); text-transform: uppercase; letter-spacing: .04em; }
+
+.resume-list { list-style: none; margin-bottom: 1.4rem; flex: 1; }
+.resume-list li {
+  font-size: .88rem;
+  color: var(--mid);
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  margin-bottom: .55rem;
+}
+.resume-list li i { color: var(--blue); font-size: .7rem; }
+
+.resume-card .btn { justify-content: center; width: 100%; }
+
+.resume-email-cta {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.resume-email-cta p {
+  font-size: .82rem;
+  color: var(--soft);
+  margin-bottom: .65rem;
+}
+
+.resume-email-cta .btn { width: 100%; }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-wrap { text-align: center; max-width: 640px; margin: 0 auto; }
+.contact-wrap .sub { color: var(--mid); margin: .6rem 0 2.2rem; font-size: 1rem; }
+
+.contact-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--blue);
+  transition: .2s;
+  box-shadow: var(--shadow);
+  flex-shrink: 0;
+}
+
+.contact-item:hover {
+  border-color: var(--blue);
+  background: var(--blue-lt);
+  transform: translateY(-2px);
+}
+
+.contact-item i {
+  font-size: 1.2rem;
+  color: var(--blue);
+}
+
+.contact-item .ci-label { display: none; }
+.contact-item .ci-value { display: none; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--dark);
+  color: rgba(255,255,255,.6);
+  padding: 1.4rem clamp(0.6rem, 1.5vw, 0.8rem);
+}
+
+html[data-theme="dark"] footer { background: #0A1120; }
+
+.footer-inner {
+  max-width: var(--section-max);
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-brand { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: #fff; }
+.footer-role { font-size: .85rem; color: rgba(255,255,255,.55); margin-top: .15rem; }
+.footer-copy { font-size: .82rem; color: rgba(255,255,255,.45); text-align: right; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 980px) {
+  .nav-links { display: none; }
+  #ham { display: flex; flex-direction: column; }
+  .about-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 720px) {
+  section { padding: 48px 0; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .resume-grid { grid-template-columns: 1fr; }
+  .certs-grid { grid-template-columns: 1fr; }
+  .edu-card-custom { flex-direction: column; gap: .9rem; }
+  .edu-date-badge { flex: 0 0 auto; width: fit-content; }
+  .pub-card { flex-direction: column; text-align: center; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-copy { text-align: center; }
+}
+
+@media (max-width: 560px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .btn-row { flex-direction: column; align-items: stretch; }
+  .btn-row .btn { justify-content: center; }
+}
+
+@media (max-width: 420px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">Harish J</a>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#publication">Publication</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon"></i>
+        <i class="fa-solid fa-sun"></i>
+      </button>
+      <button id="ham" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#publication">Publication</a>
+    <a href="#education">Education</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+  <section id="home">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-eyebrow"><span class="dot"></span> SDE Intern @ Defect Scanner · Open to QA &amp; Testing Roles</div>
+      <h1>Harish J</h1>
+      <p class="role">QA / Software Test Engineer</p>
+      <p class="bio">Manual Testing | Selenium Automation | Java | SQL. MCA graduate with hands-on testing exposure as an SDE Intern, including production monitoring, functional validation, defect identification, reproduction, reporting, retesting, and verification of AI and vision-system results. Seeking an entry-level QA / Software Test Engineer role.</p>
+      <div class="btn-row">
+        <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-folder-open"></i> View Projects</a>
+        <a href="#resume" class="btn btn-outline"><i class="fa-solid fa-file-lines"></i> View QA Resume</a>
+      </div>
+      <div class="hero-contact-grid">
+        <a href="tel:+919486495181" class="hero-contact-item" title="Phone: +91 94864 95181"><i class="fa-solid fa-phone"></i></a>
+        <a href="mailto:harishhari0408@gmail.com" class="hero-contact-item" title="Email: harishhari0408@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://linkedin.com/in/harishjayakumar8" target="_blank" rel="noopener" class="hero-contact-item" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/harishjayakumar-8" target="_blank" rel="noopener" class="hero-contact-item" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <span class="hero-contact-item" style="cursor:default;" title="Location: Sriperumbudur, Tamil Nadu"><i class="fa-solid fa-location-dot"></i></span>
+      </div>
+    </div>
+  </section>
+
+<section id="about" class="reveal">
+    <div class="section-head">
+      <p class="section-label">About</p>
+      <h2>About Me</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm an MCA graduate who developed an interest in software testing during my coursework. I enjoy finding defects, understanding how applications fail, and checking whether a feature behaves as expected.</p>
+        <p>I have knowledge of SDLC and STLC, with hands-on exposure to functional testing and production validation. In my current SDE Intern role, I identify, reproduce, report, and retest defects in a production vehicle detection system, including UI, dashboard, backend, and detection-related issues. I also validate detection results and annotate vehicle videos in CVAT for object-detection validation.</p>
+        <p>I'm learning and applying Selenium WebDriver, Java, and TestNG for automation, along with SQL for basic backend and data validation. My frontend background in HTML, CSS, and JavaScript is a supporting skill that helps me understand application behaviour and UI issues.</p>
+      </div>
+      <div class="about-points">
+        <div class="about-point"><i class="fa-solid fa-graduation-cap"></i><span><strong>MCA Graduate</strong> — Dr. MGR Educational and Research Institute</span></div>
+        <div class="about-point"><i class="fa-solid fa-briefcase"></i><span><strong>SDE Intern</strong> — Defect Scanner, a unit of Alphabt</span></div>
+        <div class="about-point"><i class="fa-solid fa-bug"></i><span><strong>Manual Testing</strong> — Test cases, defect tracking, STLC</span></div>
+        <div class="about-point"><i class="fa-solid fa-robot"></i><span><strong>Automation Testing</strong> — Selenium WebDriver with Java &amp; TestNG</span></div>
+        <div class="about-point"><i class="fa-solid fa-database"></i><span><strong>Data Validation</strong> — SQL and basic backend checks</span></div>
+        <div class="about-point"><i class="fa-solid fa-code"></i><span><strong>Supporting Skills</strong> — HTML, CSS, and JavaScript</span></div>
+      </div>
+    </div>
+  </section>
+
+<section id="skills" class="reveal">
+    <div class="section-head">
+      <p class="section-label">QA Expertise</p>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card primary-emphasis">
+        <p class="skill-card-title"><i class="fa-solid fa-clipboard-check"></i> Manual Testing</p>
+        <div class="pill-list">
+          <span class="pill">Functional Testing</span>
+          <span class="pill">Regression Testing</span>
+          <span class="pill">Smoke Testing</span>
+          <span class="pill">Sanity Testing</span>
+          <span class="pill">Integration Testing</span>
+          <span class="pill">Test Case Design</span>
+          <span class="pill">Defect Identification</span>
+          <span class="pill">Defect Reproduction</span>
+          <span class="pill">Defect Reporting</span>
+          <span class="pill">Retesting</span>
+          <span class="pill">Defect Life Cycle</span>
+          <span class="pill">UI Testing</span>
+          <span class="pill">Cross Browser Testing</span>
+          <span class="pill">Responsive Testing</span>
+          <span class="pill">SDLC</span>
+          <span class="pill">STLC</span>
+          <span class="pill">Agile Methodology</span>
+        </div>
+      </div>
+
+      <div class="skill-card primary-emphasis">
+        <p class="skill-card-title"><i class="fa-solid fa-robot"></i> Automation Testing</p>
+        <div class="pill-list">
+          <span class="pill">Selenium WebDriver</span>
+          <span class="pill">Selenium IDE</span>
+          <span class="pill">TestNG</span>
+          <span class="pill">Java</span>
+          <span class="pill">SQL</span>
+          <span class="pill">Locators</span>
+          <span class="pill">XPath</span>
+          <span class="pill">Synchronization Techniques</span>
+          <span class="pill">Data-Driven Testing Basics</span>
+        </div>
+      </div>
+
+      <div class="skill-card primary-emphasis">
+        <p class="skill-card-title"><i class="fa-solid fa-database"></i> API / Database Testing</p>
+        <div class="pill-list">
+          <span class="pill">SQL</span>
+          <span class="pill">MySQL</span>
+          <span class="pill">REST API Basics</span>
+          <span class="pill">Postman</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-card-title"><i class="fa-solid fa-code"></i> Supporting Technical Skills</p>
+        <div class="pill-list">
+          <span class="pill">Java</span>
+          <span class="pill">HTML</span>
+          <span class="pill">CSS</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">Python Basics</span>
+          <span class="pill">Flask</span>
+          <span class="pill">WebSocket</span>
+          <span class="pill">Git/GitHub</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-card-title"><i class="fa-solid fa-toolbox"></i> Tools &amp; Platforms</p>
+        <div class="pill-list">
+          <span class="pill">Jira</span>
+          <span class="pill">Postman</span>
+          <span class="pill">MySQL</span>
+          <span class="pill">Eclipse IDE</span>
+          <span class="pill">VS Code</span>
+          <span class="pill">PyCharm</span>
+          <span class="pill">GitHub</span>
+          <span class="pill">XAMPP</span>
+          <span class="pill">CVAT</span>
+          <span class="pill">MS Office</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-card-title"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Tools</p>
+        <div class="pill-list">
+          <span class="pill">ChatGPT</span>
+          <span class="pill">Google Gemini</span>
+          <span class="pill">GitHub Copilot</span>
+          <span class="pill">Claude AI</span>
+          <span class="pill">Blackbox AI</span>
+          <span class="pill">Lovable</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-card-title"><i class="fa-solid fa-people-group"></i> Soft Skills</p>
+        <div class="pill-list">
+          <span class="pill">Analytical Thinking</span>
+          <span class="pill">Attention to Detail</span>
+          <span class="pill">Problem Solving</span>
+          <span class="pill">Communication</span>
+          <span class="pill">Team Collaboration</span>
+          <span class="pill">Adaptability</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="experience" class="reveal">
+    <div class="section-head">
+      <p class="section-label">Career</p>
+      <h2>Experience</h2>
+    </div>
+    <div class="exp-track">
+      <div class="exp-card current">
+        <div class="exp-head">
+          <div class="exp-head-left">
+            <h3>SDE Intern</h3>
+            <span class="exp-org">Defect Scanner, a unit of Alphabt</span> · <span class="exp-mode">Hybrid</span>
+          </div>
+          <span class="exp-date-badge">July 2026 – Present</span>
+        </div>
+        <p class="exp-focus">Testing focus: RBT Vehicle Lamp &amp; Parts Detection System | AI Roll &amp; Brake Project</p>
+        <ul class="exp-list">
+          <li>Monitor the RBT vehicle lamp and parts detection system at the client plant and validate system behavior against expected requirements.</li>
+          <li>Identify software, dashboard, UI/UX, backend, and detection-related issues; reproduce confirmed defects and report them with screenshots and relevant details.</li>
+          <li>Reproduce detection issues using the same vehicle model, variant, and color, and retest fixes to verify defect resolution.</li>
+          <li>Perform functional checks, troubleshoot production issues when required, and support verification and validation of the AI Roll &amp; Brake project.</li>
+          <li>Validate detection results and annotate vehicle videos in CVAT using bounding boxes to support object-detection workflows and model validation.</li>
+          <li>Assist with YOLO-based model training and validation using notebook-based workflows, along with minor technical and project-support tasks.</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-head">
+          <div class="exp-head-left">
+            <h3>Frontend Developer Intern</h3>
+            <span class="exp-org">Unified Mentor</span> · <span class="exp-mode">Remote</span>
+          </div>
+          <span class="exp-date-badge">2025</span>
+        </div>
+        <p class="exp-focus">Project: Personal Portfolio Website</p>
+        <ul class="exp-list">
+          <li>Performed functional testing of UI components, navigation, expected UI behaviour, and interactive elements.</li>
+          <li>Tested responsive layouts and cross-browser behaviour across different screen sizes and devices.</li>
+          <li>Identified frontend defects, fixed the issues, and retested the changes to improve usability and consistency.</li>
+          <li>Supported portfolio development using HTML, CSS, and JavaScript.</li>
+        </ul>
+        <div class="exp-links">
+          <a href="https://github.com/harishjayakumar-8/harishjayakumar-portfolio" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub Repo</a>
+          <a href="https://harishjayakumar-8.github.io/harishjayakumar-portfolio" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="projects" class="reveal">
+    <div class="section-head">
+      <p class="section-label">Work</p>
+      <h2>Projects</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card featured">
+        <div class="project-card-body">
+          <div class="project-tag-row">
+            <span class="tag">MCA Final Year Project</span>
+          </div>
+          <h3>STADAERS</h3>
+          <p>Smart Traffic Accident Detection and Emergency Response System — a deep-learning web application that detects road accidents and triggers an emergency response workflow.</p>
+          <div class="tags">
+            <span class="tag">Deep Learning</span>
+            <span class="tag">Web App</span>
+          </div>
+        </div>
+        <ul class="project-details">
+          <li>Built a system that uses deep learning to detect traffic accidents and automatically start an emergency response workflow.</li>
+          <li>Performed functional and workflow validation of critical application modules against expected behaviour.</li>
+          <li>Tested the UI, responsive layout, and cross-browser behaviour, and identified usability and UI issues.</li>
+          <li>Validated the detection and alert flow to check that the application responded correctly across the main workflow.</li>
+          <li>This project was also published as a research paper based on my MCA final year work.</li>
+        </ul>
+        <div class="project-actions">
+          <a href="https://github.com/harishjayakumar-8/STADAERS" target="_blank" rel="noopener" class="a-outline">
+            <i class="fa-brands fa-github"></i> GitHub Repository 
+          </a>
+          <a href="https://www.doi.org/10.56726/IRJMETS99644" target="_blank" rel="noopener" class="a-primary">
+            <i class="fa-solid fa-file-lines"></i> Research Publication
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-body">
+          <div class="project-tag-row">
+            <span class="tag">BCA Final Year Team Project</span>
+          </div>
+          <h3>DBZ Accessories</h3>
+          <p>An E-Commerce Web Application for automobile accessories, built as a team final year project.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+        <ul class="project-details">
+          <li>Performed functional testing of user navigation, product search, product listings, and key UI controls.</li>
+          <li>Validated expected application behaviour across common user flows and identified UI defects.</li>
+          <li>Tested responsive layouts and cross-browser behaviour across different screen sizes.</li>
+          <li>Supported frontend implementation using HTML, CSS, and JavaScript.</li>
+        </ul>
+        <div class="project-actions">
+          <a href="https://github.com/harishjayakumar-8/DBZ-Automobile-Accessories" target="_blank" rel="noopener" class="a-outline">
+            <i class="fa-brands fa-github"></i> GitHub Repository
+          </a>
+          <a href="https://harishjayakumar-8.github.io/DBZ-Automobile-Accessories/index.html" target="_blank" rel="noopener" class="a-primary">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-body">
+          <div class="project-tag-row">
+            <span class="tag">Internship Project – Unified Mentor</span>
+          </div>
+          <h3>Personal Portfolio</h3>
+          <p>A responsive portfolio website built during my frontend development internship to showcase my work.</p>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+        <ul class="project-details">
+          <li>Validated navigation, interactive UI behaviour, responsive layouts, and content presentation.</li>
+          <li>Identified usability issues, supported UI fixes, and retested changes based on expected behaviour.</li>
+          <li>Checked the site across browsers to make sure it displayed and worked consistently.</li>
+        </ul>
+        <div class="project-actions">
+          <a href="https://github.com/harishjayakumar-8/harishjayakumar-portfolio" target="_blank" rel="noopener" class="a-outline">
+            <i class="fa-brands fa-github"></i> GitHub Repository
+          </a>
+          <a href="https://harishjayakumar-8.github.io/harishjayakumar-portfolio" target="_blank" rel="noopener" class="a-primary">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<section id="publication" class="reveal">
+    <div class="section-head">
+      <p class="section-label">Research</p>
+      <h2>Research Publication</h2>
+    </div>
+    <div class="pub-card">
+      <div class="pub-icon"><i class="fa-solid fa-file-lines"></i></div>
+      <div class="pub-body">
+        <h3>Smart Traffic Accident Detection and Emergency Response System (STADAERS)</h3>
+        <p>Published research paper based on my MCA final year project, covering the deep learning based accident detection approach and the emergency response workflow.</p>
+        <div class="pub-meta">
+          <span><i class="fa-solid fa-check"></i> Published Research Paper</span>
+          <span><i class="fa-solid fa-graduation-cap"></i> Based on MCA Final Year Project</span>
+          <span><i class="fa-solid fa-link"></i> DOI Available</span>
+        </div>
+        <a href="https://www.doi.org/10.56726/IRJMETS99644" target="_blank" rel="noopener" class="btn btn-primary">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> View Publication
+        </a>
+      </div>
+    </div>
+  </section>
+
+<section id="education" class="reveal">
+    <div class="section-head">
+      <p class="section-label">Academic</p>
+      <h2>Education</h2>
+    </div>
+    <div class="edu-track">
+      <div class="edu-card-custom">
+        <div class="edu-date-badge">2024 – 2026</div>
+        <div class="edu-content-main">
+          <span class="edu-uni">Dr. MGR Educational and Research Institute · Chennai</span>
+          <h3>Master of Computer Applications (MCA)</h3>
+          <div class="edu-cgpa">CGPA: 8.07</div>
+        </div>
+      </div>
+
+      <div class="edu-card-custom">
+        <div class="edu-date-badge">2021 – 2024</div>
+        <div class="edu-content-main">
+          <span class="edu-uni">Dr. MGR Educational and Research Institute · Chennai</span>
+          <h3>BCA — Digital Technology</h3>
+          <div class="edu-cgpa">CGPA: 7.0</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="certificates" class="reveal">
+    <div class="section-head">
+      <p class="section-label">Credentials</p>
+      <h2>Certifications &amp; Training</h2>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <i class="fa-solid fa-award cert-icon"></i>
+        <h3>Java Enterprise Applications - Digital Transformation Curriculum</h3>
+        <p class="cert-sub">NIIT, Anna Nagar, Chennai</p>
+        <span class="cert-badge">2021 – 2024</span>
+      </div>
+
+      <div class="cert-card">
+        <i class="fa-solid fa-award cert-icon"></i>
+        <h3><a href="https://unifiedmentor.com/verify-certificate/UMID24042532576" target="_blank" rel="noopener">Frontend Developer Internship <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.7rem;"></i></a></h3>
+        <p class="cert-sub">Unified Mentor, Gurgaon, Haryana (Remote)</p>
+        <span class="cert-badge">2025</span>
+      </div>
+
+      <div class="cert-card">
+        <i class="fa-solid fa-award cert-icon"></i>
+        <h3><a href="https://archive.nptel.ac.in/content/noc/NOC25/SEM2/Ecertificates/106/noc25-cs107/Course/NPTEL25CS107S37520104110515905.pdf" target="_blank" rel="noopener">Cloud Computing – Elite Certification <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:.7rem;"></i></a></h3>
+        <p class="cert-sub">NPTEL – IIT Kharagpur (Online)</p>
+        <span class="cert-badge">2025</span>
+      </div>
+
+      <div class="cert-card qa-primary">
+        <i class="fa-solid fa-award cert-icon"></i>
+        <h3>Software Testing and Selenium Automation Training</h3>
+        <p class="cert-sub">QSpiders, Vadapalani, Chennai</p>
+        <span class="cert-badge">2025 – 2026</span>
+      </div>
+    </div>
+  </section>
+
+<section id="resume" class="reveal">
+    <div class="section-head">
+      <p class="section-label">Resume</p>
+      <h2>QA / Software Test Engineer Resume</h2>
+    </div>
+    <div class="resume-grid single-resume">
+      <div class="resume-card">
+        <div class="resume-card-top">
+          <div class="resume-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <div>
+            <h3>QA / Software Test Engineer Resume</h3>
+            <span class="resume-focus">Primary Career Focus</span>
+          </div>
+        </div>
+        <ul class="resume-list">
+          <li><i class="fa-solid fa-circle"></i> Manual Testing</li>
+          <li><i class="fa-solid fa-circle"></i> Automation Testing (Selenium)</li>
+          <li><i class="fa-solid fa-circle"></i> Java and SQL</li>
+          <li><i class="fa-solid fa-circle"></i> Production Testing Experience</li>
+        </ul>
+        <a href="Harish_J_Testing_Resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+          <i class="fa-solid fa-file-arrow-down"></i> View QA Resume
+        </a>
+        <div class="resume-email-cta">
+          <p>Need the latest version or have a question?</p>
+          <a href="mailto:harishhari0408@gmail.com?subject=Regarding%20Your%20Portfolio&body=Hello%20Harish%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you%20regarding%20your%20resume%20and%20potential%20opportunities.%0A%0ALooking%20forward%20to%20hearing%20from%20you.%0A%0ARegards%2C" class="btn btn-ghost">
+            <i class="fa-solid fa-envelope"></i> Email Me
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<section id="contact" class="reveal">
+    <div class="contact-wrap">
+      <p class="section-label">Get in Touch</p>
+      <h2>Let's Connect</h2>
+      <p class="sub">Open to QA, Automation Testing, and Software Testing Opportunities.</p>
+      <div class="contact-grid">
+        <a href="mailto:harishhari0408@gmail.com" class="contact-item" title="Email: harishhari0408@gmail.com">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+        <a href="tel:+919486495181" class="contact-item" title="Phone: +91 94864 95181">
+          <i class="fa-solid fa-phone"></i>
+        </a>
+        <a href="https://linkedin.com/in/harishjayakumar8" target="_blank" rel="noopener" class="contact-item" title="LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/harishjayakumar-8" target="_blank" rel="noopener" class="contact-item" title="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <span class="contact-item" style="cursor:default;" title="Location: Sriperumbudur, Tamil Nadu">
+          <i class="fa-solid fa-location-dot"></i>
+        </span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Harish J</div>
+      <div class="footer-role">QA Engineer | Software Testing &amp; Automation</div>
+    </div>
+    <div class="footer-copy">&copy; 2026 Harish J. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // -- Theme toggle (light / dark), persisted for this session --
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const savedTheme = sessionStorage.getItem('theme');
+  if (savedTheme) root.setAttribute('data-theme', savedTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
+    if (next === 'dark') root.setAttribute('data-theme', 'dark');
+    else root.removeAttribute('data-theme');
+    try { sessionStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  // -- Mobile menu toggle --
+  const ham = document.getElementById('ham');
+  const menu = document.getElementById('mobile-menu');
+  ham.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    ham.classList.toggle('open', open);
+    ham.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      ham.classList.remove('open');
+      ham.setAttribute('aria-expanded', 'false');
+    })
+  );
+
+  // -- Subtle nav shadow once the page scrolls, for a smoother sticky feel --
+  const navEl = document.querySelector('nav');
+  const updateNavShadow = () => navEl.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', updateNavShadow, { passive: true });
+  updateNavShadow();
+
+  // -- Smooth scroll for anchor links, accounting for sticky nav height --
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      const target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        const navHeight = navEl.offsetHeight;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 4;
+        window.scrollTo({ top, behavior: 'smooth' });
+        history.pushState(null, '', id);
+      }
+    });
+  });
+
+  // -- Scroll-based active nav highlight --
+  const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
+  const sectionIds = ['home', 'about', 'skills', 'experience', 'projects', 'publication', 'education', 'certificates', 'resume', 'contact'];
+
+  const setActive = (id) => {
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${id}`) {
+        link.classList.add('active');
+      }
+    });
+  };
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, {
+    root: null,
+    rootMargin: '-15% 0px -55% 0px',
+    threshold: 0
+  });
+
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) sectionObserver.observe(el);
+  });
+
+  // -- Scroll reveal animations --
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
